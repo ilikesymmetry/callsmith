@@ -7,8 +7,7 @@ import {
   PlaygroundState,
   RouteState,
 } from "@/lib/types";
-import { useEffect, useReducer } from "react";
-import { ApiTab, stitchRoute } from "./ApiTab";
+import { ApiTab } from "./ApiTab";
 import { Tabs, TabsList } from "./ui/tabs-vertical";
 import { ApiRoute } from "./ApiRoute";
 import {

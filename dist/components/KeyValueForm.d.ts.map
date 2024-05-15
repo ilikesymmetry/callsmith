@@ -1,0 +1,1 @@
+{"version":3,"file":"KeyValueForm.d.ts","sourceRoot":"","sources":["../../src/components/KeyValueForm.tsx"],"names":[],"mappings":"AAEA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AAUvC,wBAAgB,YAAY,CAAC,EAC3B,SAAS,EACT,YAAY,EACZ,QAAgB,GACjB,EAAE;IACD,SAAS,EAAE,QAAQ,EAAE,CAAC;IACtB,YAAY,EAAE,CAAC,CAAC,EAAE,GAAG,KAAK,IAAI,CAAC;IAC/B,QAAQ,CAAC,EAAE,OAAO,CAAC;CACpB,2CAqEA"}
