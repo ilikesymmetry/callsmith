@@ -24,16 +24,23 @@ TabsList.displayName = TabsPrimitive.List.displayName;
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
+    alert?: boolean;
+  }
+>(({ className, children, alert, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex whitespace-nowrap hover:text-black py-2 font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-b-2 data-[state=active]:text-neutral-950 data-[state=active]:shadow-sm dark:hover:text-white dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 dark:data-[state=active]:text-neutral-50",
+      "relative inline-flex whitespace-nowrap hover:text-black border-b-2 border-transparent py-2 font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-black data-[state=active]:text-neutral-950 data-[state=active]:shadow-sm dark:data-[state=active]:border-white dark:hover:text-white dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 dark:data-[state=active]:text-neutral-50",
       className
     )}
     {...props}
-  />
+  >
+    {alert && (
+      <div className="absolute bg-red-500 rounded-full h-1.5 w-1.5 top-3 -right-1.5" />
+    )}
+    {children}
+  </TabsPrimitive.Trigger>
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 

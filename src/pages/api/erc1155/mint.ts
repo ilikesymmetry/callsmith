@@ -92,6 +92,7 @@ export default async function handler(
 
   try {
     // await mintTokens(req, res);
+    return res.status(500).json({ test: true });
   } catch (e: any) {
     console.error(e.message);
     return res.status(500).json({ success: false, error: e.message });

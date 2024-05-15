@@ -2,6 +2,8 @@ import { Dispatch } from "react";
 
 export type ApiPathNode = {
   value: string;
+  type: "dir" | "file";
+  data?: { method: string };
   children: ApiPathNode[];
 };
 export type PlaygroundState = {
@@ -12,11 +14,22 @@ export type KeyValue = {
   key: string;
   value: string;
 };
-export type Method = "GET" | "POST";
-export type RouteState = {
+export type Method =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "PATCH"
+  | "DELETE"
+  | "HEAD"
+  | "OPTIONS";
+export type Route = {
+  path: string;
   method: Method;
+};
+export type RouteState = Route & {
   headers: KeyValue[];
   query: KeyValue[];
+  params: KeyValue[];
   body: string;
   lastResponse?: {
     status: number;
@@ -28,6 +41,7 @@ export enum PlaygroundActionType {
   EditHeaders = "EditHeaders",
   EditQuery = "EditQuery",
   EditBody = "EditBody",
+  EditRouteParams = "EditRouteParams",
   EditMethod = "EditMethod",
   HttpResponse = "HttpResponse",
 }

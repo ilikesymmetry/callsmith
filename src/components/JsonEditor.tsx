@@ -1,59 +1,52 @@
-// import ConfigContext from "@/context/ConfigContext";
-// import createTheme from "@uiw/codemirror-themes";
-// import ReactCodeMirror from "@uiw/react-codemirror";
-// import { useContext } from "react";
-// import { json, jsonParseLinter } from "@codemirror/lang-json";
-// import { linter } from "@codemirror/lint";
-// import { tags as t } from "@lezer/highlight";
+import createTheme from "@uiw/codemirror-themes";
+import ReactCodeMirror from "@uiw/react-codemirror";
+import { json, jsonParseLinter } from "@codemirror/lang-json";
+import { linter } from "@codemirror/lint";
+import { tags as t } from "@lezer/highlight";
+import { useTheme } from "@/lib/hooks";
 
-// export function JsonEditor({
-//   value,
-//   onChange,
-//   disabled = false,
-// }: {
-//   value: string;
-//   onChange?: (v: string) => void;
-//   disabled?: boolean;
-// }) {
-//   const config = useContext(ConfigContext);
-//   const c = config.theme.colors;
-//   const theme = createTheme({
-//     theme: "light",
-//     settings: {
-//       fontSize: "14px",
-//       background: c.highlightFaint,
-//       backgroundImage: "",
-//       foreground: c.primary,
-//       caret: c.primary,
-//       selection: c.highlight,
-//       selectionMatch: c.highlightFaint,
-//       lineHighlight: c.highlight,
-//       gutterBackground: c.highlightFaint,
-//       gutterForeground: c.secondary,
-//       gutterBorder: c.highlightFaint,
-//     },
-//     styles: [
-//       { tag: t.string, color: c.orange },
-//       { tag: t.number, color: c.green },
-//       { tag: t.bool, color: c.blue },
-//       { tag: t.null, color: c.red },
-//     ],
-//   });
-//   return (
-//     <ReactCodeMirror
-//       value={value}
-//       onChange={onChange}
-//       theme={theme}
-//       extensions={[json(), linter(jsonParseLinter())]}
-//       // editable={!disabled}
-//     />
-//   );
-// }
-
-export function JsonEditor(props: {
+export function JsonEditor({
+  value,
+  onChange,
+  disabled = false,
+}: {
   value: string;
   onChange?: (v: string) => void;
   disabled?: boolean;
 }) {
-  return <div>{props.value}</div>;
+  const theme = useTheme();
+  console.log("theme", theme);
+
+  const editorTheme = createTheme({
+    theme,
+    settings: {
+      fontSize: "14px",
+      background: theme === "light" ? "#FAFAFA" : "#0A0A0A",
+      backgroundImage: "",
+      foreground: theme === "light" ? "#000000" : "#FFFFFF",
+      caret: theme === "light" ? "#000000" : "#FFFFFF",
+      selection: "#525252",
+      selectionMatch: theme === "light" ? "#FAFAFA" : "#0A0A0A",
+      lineHighlight: theme === "light" ? "#E5E5E5" : "#262626",
+      gutterBackground: theme === "light" ? "#FAFAFA" : "#0A0A0A",
+      gutterBorder: theme === "light" ? "#E5E5E5" : "#262626",
+      gutterForeground: "#A3A3A3",
+      gutterActiveForeground: theme === "light" ? "#000000" : "#FFFFFF",
+    },
+    styles: [
+      { tag: t.string, color: "#FB923C" },
+      { tag: t.number, color: "#4ADE80" },
+      { tag: t.bool, color: "#2563EB" },
+      { tag: t.null, color: "#DB2777" },
+    ],
+  });
+  return (
+    <ReactCodeMirror
+      value={value}
+      onChange={onChange}
+      theme={editorTheme}
+      extensions={[json(), linter(jsonParseLinter())]}
+      editable={!disabled}
+    />
+  );
 }

@@ -110,6 +110,7 @@ export default async function handler(
 
   try {
     // await batchMintTokens(req, res);
+    return res.json({ test: true, random: Math.floor(Math.random() * 100) });
   } catch (e: any) {
     console.error(e.message);
     return res.status(500).json({ success: false, error: e.message });
