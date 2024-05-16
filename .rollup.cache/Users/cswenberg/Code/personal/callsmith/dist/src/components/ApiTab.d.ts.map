@@ -1,1 +1,0 @@
-{"version":3,"file":"ApiTab.d.ts","sourceRoot":"","sources":["../../../src/components/ApiTab.tsx"],"names":[],"mappings":";AAUA,OAAO,EAAU,WAAW,IAAI,IAAI,EAAE,MAAM,aAAa,CAAC;AAG1D,wBAAgB,WAAW,CAAC,MAAM,EAAE,MAAM,EAAE,IAAI,EAAE,MAAM,UAEvD;AAED,wBAAgB,MAAM,CAAC,EAAE,MAAM,EAAE,IAAI,EAAE,EAAE;IAAE,MAAM,EAAE,MAAM,CAAC;IAAC,IAAI,EAAE,IAAI,CAAA;CAAE,+BAwDtE"}
