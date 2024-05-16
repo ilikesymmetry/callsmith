@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "callsmith": "^0.0.7",
+    "callsmith": "^0.0.9",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"

@@ -6,6 +6,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import replace from "@rollup/plugin-replace";
 import styles from "rollup-plugin-styles";
+import { terser } from "rollup-plugin-terser";
 import addUseClient from "./rollup-plugin-use-client.js";
 
 import { fileURLToPath } from "url";
@@ -24,14 +25,14 @@ const config = {
     {
       dir: "dist",
       format: "cjs",
-      sourcemap: true,
+      sourcemap: false,
       entryFileNames: "[name].js",
       assetFileNames: "[name][extname]",
     },
     {
       dir: "dist",
       format: "es",
-      sourcemap: true,
+      sourcemap: false,
       entryFileNames: "[name].es.js",
     },
   ],
@@ -78,9 +79,10 @@ const config = {
       "process.env.NODE_ENV": JSON.stringify("production"),
       preventAssignment: true,
     }),
+    terser(),
     addUseClient(),
   ],
-  external: ["react", "react-dom", "next"],
+  external: ["react", "react-dom", "next", "tailwindcss"],
 };
 
 export default config;
