@@ -1,16 +1,16 @@
 {
   "name": "callsmith",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "exports": {
     "./client": {
       "import": "./dist/client.es.js",
       "require": "./dist/client.js",
-      "types": "./dist/dist/client.d.ts"
+      "types": "./dist/src/client.d.ts"
     },
     "./server": {
       "import": "./dist/server.es.js",
       "require": "./dist/server.js",
-      "types": "./dist/dist/server.d.ts"
+      "types": "./dist/src/server.d.ts"
     }
   },
   "files": [

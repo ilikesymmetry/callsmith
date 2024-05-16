@@ -1,4 +1,3 @@
-// import postcss from "rollup-plugin-postcss";
 import typescript from "@rollup/plugin-typescript";
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
@@ -6,8 +5,8 @@ import alias from "@rollup/plugin-alias";
 import commonjs from "@rollup/plugin-commonjs";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import replace from "@rollup/plugin-replace";
-import preserveDirective from "./rollup-preserve-directive-plugin.mjs";
 import styles from "rollup-plugin-styles";
+import addUseClient from "./rollup-plugin-use-client.js";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -19,7 +18,7 @@ const __dirname = path.dirname(__filename);
 const config = {
   input: {
     client: "./src/client.tsx",
-    server: "./src/server.tsx",
+    server: "./src/server.ts",
   },
   output: [
     {
@@ -37,7 +36,6 @@ const config = {
     },
   ],
   plugins: [
-    preserveDirective(),
     peerDepsExternal(),
     alias({
       entries: [
@@ -75,14 +73,12 @@ const config = {
         "@babel/preset-typescript",
       ],
     }),
-    styles({
-      mode: ["extract", "./styles.css"],
-      sourcemap: true,
-    }),
+    styles(),
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       preventAssignment: true,
     }),
+    addUseClient(),
   ],
   external: ["react", "react-dom", "next"],
 };

@@ -23,7 +23,7 @@ export function ApiTab({ prefix, node }: { prefix: string; node: Node }) {
 
   return node.children.length === 0 ? (
     <TabsTrigger
-      style={{ paddingLeft: offset * 24 }}
+      style={{ paddingLeft: offset * 24 + 8 }}
       className="w-full relative"
       value={`${node.data?.method}:${joinPaths([prefix, node.value])}`}
     >
@@ -47,7 +47,10 @@ export function ApiTab({ prefix, node }: { prefix: string; node: Node }) {
     </TabsTrigger>
   ) : (
     <AccordionItem value={node.value} className="w-full">
-      <AccordionTrigger style={{ paddingLeft: offset * 24 }} className="w-full">
+      <AccordionTrigger
+        style={{ paddingLeft: offset * 24 + 8 }}
+        className="w-full"
+      >
         <div className="flex w-[28px] items-center justify-end" />
         {node.value}
       </AccordionTrigger>

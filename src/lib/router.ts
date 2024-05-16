@@ -8,12 +8,9 @@ interface ApiRoute {
 }
 
 export function getAppRoutes() {
-  //   const apiDirectory = path.join(__dirname, "/api");
   const apiDirectory = path.join(process.cwd(), "src", "app");
   const apiRoutes = getApiRoutes(apiDirectory);
-  // console.log("apiRoutes", apiRoutes);
   const fileTree = buildFileTree(apiRoutes);
-  // console.log("fileTree", fileTree);
   return fileTree;
 }
 

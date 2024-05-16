@@ -7,18 +7,16 @@ import {
   PlaygroundState,
   RouteState,
 } from "@/lib/types";
-import { ApiTab } from "./ApiTab";
-import { Tabs, TabsList } from "./ui/tabs-vertical";
 import { ApiRoute } from "./ApiRoute";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "./ui/resizable";
-import { Accordion } from "./ui/accordion";
-import { extractPath, joinPaths } from "@/lib/utils";
+import { extractPath } from "@/lib/utils";
 import { useImmerReducer } from "use-immer";
-import { ScrollArea } from "./ui/scroll-area";
+import { useEffect } from "react";
+import { RoutesNavigation } from "./RoutesNavigation";
 
 function reducer(
   draft: PlaygroundState,
@@ -87,9 +85,7 @@ export function extractRoutes(
 }
 
 export function Callsmith({ nodes }: { nodes: ApiPathNode[] }) {
-  // console.log("nodes", nodes);
   const extracted = extractRoutes(nodes);
-  // console.log("extracted", extracted);
 
   const initialState = extracted.reduce(
     (acc: PlaygroundState, route) => {
@@ -104,21 +100,7 @@ export function Callsmith({ nodes }: { nodes: ApiPathNode[] }) {
       routes: {},
     }
   );
-  const [state, dispatch] = useImmerReducer(
-    reducer,
-    initialState
-    //   , () => {
-    //   const localData = localStorage.getItem("appState");
-    //   return localData ? JSON.parse(localData) : initialState;
-    // }
-  );
-
-  // Save state to localStorage whenever it changes
-  // useEffect(() => {
-  //   localStorage.setItem("appState", JSON.stringify(state));
-  // }, [state]);
-
-  // console.log("state", state);
+  const [state, dispatch] = useImmerReducer(reducer, initialState);
 
   return (
     <main className="dark:bg-black dark:text-white overflow-hidden">
@@ -132,49 +114,7 @@ export function Callsmith({ nodes }: { nodes: ApiPathNode[] }) {
           maxSize={40}
           className="relative"
         >
-          <div className="py-4 px-6 text-neutral-400">Routes</div>
-          <ScrollArea className="h-[calc(100vh-120px)]">
-            <Tabs
-              value={state.selectedRoute}
-              onValueChange={(route) =>
-                dispatch({
-                  type: PlaygroundActionType.SelectRoute,
-                  data: route,
-                })
-              }
-            >
-              <Accordion
-                type="multiple"
-                className="w-full"
-                defaultValue={nodes.map((n) => n.value)}
-              >
-                <TabsList>
-                  {nodes.map((node, i) => (
-                    <ApiTab
-                      key={`${node.data?.method}:${joinPaths([
-                        "",
-                        node.value,
-                      ])}-${i}`}
-                      prefix=""
-                      node={node}
-                    />
-                  ))}
-                </TabsList>
-              </Accordion>
-            </Tabs>
-          </ScrollArea>
-          <div className="absolute bottom-0 px-6 pb-4 w-full">
-            <div className="text-sm text-neutral-400 dark:text-neutral-600">
-              Made by{" "}
-              <a
-                href="https://twitter.com/ilikesymmetry"
-                target="_blank"
-                className="hover:underline hover:text-neutral-500"
-              >
-                @ilikesymmetry
-              </a>
-            </div>
-          </div>
+          <RoutesNavigation nodes={nodes} state={state} dispatch={dispatch} />
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={75} className="">
