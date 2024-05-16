@@ -1,0 +1,1 @@
+{"version":3,"file":"HttpMethodBadge.d.ts","sourceRoot":"","sources":["../../../src/components/HttpMethodBadge.tsx"],"names":[],"mappings":";AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,aAAa,CAAC;AAGrC,wBAAgB,eAAe,CAAC,EAC9B,MAAM,EACN,QAAQ,EACR,IAAI,EACJ,GAAG,IAAI,EACR,EAAE;IACD,MAAM,EAAE,MAAM,CAAC;IACf,IAAI,CAAC,EAAE,IAAI,GAAG,SAAS,GAAG,IAAI,CAAC;IAC/B,QAAQ,EAAE,GAAG,CAAC;CACf,+BA6CA"}

@@ -1,3 +1,5 @@
+"use client";
+
 import createTheme from "@uiw/codemirror-themes";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { json, jsonParseLinter } from "@codemirror/lang-json";

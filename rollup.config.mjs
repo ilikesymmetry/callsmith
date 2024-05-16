@@ -5,6 +5,8 @@ import babel from "@rollup/plugin-babel";
 import alias from "@rollup/plugin-alias";
 import commonjs from "@rollup/plugin-commonjs";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import replace from "@rollup/plugin-replace";
+import preserveDirective from "./rollup-preserve-directive-plugin.mjs";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -14,20 +16,26 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  input: "./src/index.tsx",
+  input: {
+    client: "./src/client.tsx",
+    server: "./src/server.tsx",
+  },
   output: [
     {
-      file: "dist/index.js",
+      dir: "dist",
       format: "cjs",
       sourcemap: true,
+      entryFileNames: "[name].js",
     },
     {
-      file: "dist/index.es.js",
+      dir: "dist",
       format: "es",
       sourcemap: true,
+      entryFileNames: "[name].es.js",
     },
   ],
   plugins: [
+    preserveDirective(),
     peerDepsExternal(),
     alias({
       entries: [
@@ -75,6 +83,10 @@ export default {
         insertAt: "top",
       },
     }),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      preventAssignment: true,
+    }),
   ],
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "next"],
 };

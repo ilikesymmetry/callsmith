@@ -19,8 +19,6 @@ import { Accordion } from "./ui/accordion";
 import { extractPath, joinPaths } from "@/lib/utils";
 import { useImmerReducer } from "use-immer";
 import { ScrollArea } from "./ui/scroll-area";
-import Link from "next/link";
-import { ContentBox } from "./ContentBox";
 
 function reducer(
   draft: PlaygroundState,
@@ -165,19 +163,17 @@ export function Callsmith({ nodes }: { nodes: ApiPathNode[] }) {
               </Accordion>
             </Tabs>
           </ScrollArea>
-          <div className="absolute bottom-0 px-8 py-4 w-full">
-            <ContentBox>
-              <div className="py-2 text-center text-sm text-neutral-600 dark:text-neutral-400">
-                Made by{" "}
-                <Link
-                  href="https://twitter.com/ilikesymmetry"
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  @ilikesymmetry
-                </Link>
-              </div>
-            </ContentBox>
+          <div className="absolute bottom-0 px-6 py-2 w-full">
+            <div className="text-sm text-neutral-400 dark:text-neutral-600">
+              Made by{" "}
+              <a
+                href="https://twitter.com/ilikesymmetry"
+                target="_blank"
+                className="hover:underline hover:text-neutral-500"
+              >
+                @ilikesymmetry
+              </a>
+            </div>
           </div>
         </ResizablePanel>
         <ResizableHandle />

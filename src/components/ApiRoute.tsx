@@ -1,4 +1,6 @@
-import { Dispatch, useCallback, useEffect, useState } from "react";
+"use client";
+
+import { Dispatch, useCallback, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs-horizontal";
 import {
   ResizableHandle,

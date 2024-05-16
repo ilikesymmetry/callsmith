@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { ApiPathNode, Method, Route, RouteState } from "./types";
+import { ApiPathNode } from "./types";
 
 interface ApiRoute {
   route: string;

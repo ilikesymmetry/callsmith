@@ -1,4 +1,6 @@
-import { cn, joinPaths } from "@/lib/utils";
+"use client";
+
+import { joinPaths } from "@/lib/utils";
 import {
   Accordion,
   AccordionContent,
