@@ -163,7 +163,7 @@ export function Callsmith({ nodes }: { nodes: ApiPathNode[] }) {
               </Accordion>
             </Tabs>
           </ScrollArea>
-          <div className="absolute bottom-0 px-6 py-2 w-full">
+          <div className="absolute bottom-0 px-6 pb-4 w-full">
             <div className="text-sm text-neutral-400 dark:text-neutral-600">
               Made by{" "}
               <a

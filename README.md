@@ -16,9 +16,7 @@ A workaround is in progress for this, but to make App Router happy, we need to u
 
 ```jsx
 "use client";
-import * as callsmith from "callsmith/client";
-
-export const Callsmith = callsmith.Callsmith;
+export { Callsmith } from "callsmith/client";
 ```
 
 ## Add page
@@ -27,7 +25,7 @@ Note that this needs to be a server component so that `getAppRoutes` can leverag
 
 ```jsx
 import { getAppRoutes } from "callsmith/server";
-import { Callsmith } from "./Callsmith";
+import { Callsmith } from "./callsmith";
 
 export default function Page() {
   return <Callsmith nodes={getAppRoutes()} />;
